@@ -12,7 +12,7 @@
     "virtualdom",
     "modules"
   ],
-  "license": "MIT",
+  "license": "LGPL3",
   "homepage": "",
   "ignore": [
     "**/.*",
