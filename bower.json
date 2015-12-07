@@ -20,5 +20,11 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "bluebird": "~3.0.6",
+    "lodash": "~3.10.1",
+    "jquery": "~2.1.4",
+    "bootstrap": "~3.3.6"
+  }
 }
