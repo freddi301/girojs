@@ -1,0 +1,24 @@
+{
+  "name": "reactive",
+  "authors": [
+    "Frederik Batuna <gobi301@gmail.com>"
+  ],
+  "description": "reactive javascript utility, reactive dom based on first, utilities based on all this",
+  "main": "",
+  "moduleType": [],
+  "keywords": [
+    "javascript",
+    "reactive",
+    "virtualdom",
+    "modules"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
