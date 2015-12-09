@@ -44,7 +44,7 @@ Reactive.prototype.c = function Reactive_clear_dependencies () { var watchees = 
 
 window.Giro = window.Giro || { _shortcuts: {}};
 window.Giro.Reactive = Reactive;
-window.Giro.shortcuts = function Reactive_shortcuts(dict){ var shortcuts = window.Giro._shortcuts, i; dict = dict || window;
+window.Giro.shortcuts = function Reactive_shortcuts(dict){ var shortcuts = window.Giro._shortcuts, i;
   for (i in shortcuts) dict[i] = shortcuts[i]; return dict;
 };
 window.Giro._shortcuts.r = function(){ var ret = new Reactive(); return ret};
