@@ -20,7 +20,10 @@ Reactive.prototype.s = function Reactive_set(value, isDependency) { if (!isDepen
 
 Reactive.prototype.m = function Reactive_method(fun) { this.c();
   var dependencies = [], args = Array.prototype.slice.call(arguments,1), watchees = [], self = this;
-  for (var i in args){ var arg = args[i];
+  for (var i in args){ (function (arg, i){
+
+  })(args[i] ,i);
+  var arg = args[i];
     if (arg instanceof Reactive) arg.w((function(i){
         var callback = function Reactive_dependency(delta, old){
           dependencies[i] = delta;
@@ -42,10 +45,10 @@ Reactive.prototype.c = function Reactive_clear_dependencies () { var watchees = 
   return this;
 };
 
-window.Giro = window.Reactive || { _shortcuts: {}};
+window.Giro = window.Giro || { _shortcuts: {}};
 window.Giro.Reactive = Reactive;
-window.Giro.shortcuts = function Reactive_shortcuts(){ var shortcuts = window.Giro._shortcuts, i;
-  for (i in shortcuts) window[i] = shortcuts[i];
+window.Giro.shortcuts = function Reactive_shortcuts(dict){ var shortcuts = window.Giro._shortcuts, i; dict = dict || window;
+  for (i in shortcuts) dict[i] = shortcuts[i]; return dict;
 };
 window.Giro._shortcuts.r = function(){ var ret = new Reactive(); return ret};
 

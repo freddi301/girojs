@@ -18,11 +18,12 @@
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="reactive.js"></script>
     <script src="element.js"></script>
+    <script src="need.js"></script>
     <script type="text/javascript">
       function add(){
         return _.reduce(_.tail(arguments), function(memo, v){return memo+v}, _.head(arguments));
       };
-      Giro.shortcuts();
+      Giro.shortcuts(window);
 
       a=r().s(1);b=r().s(2);cc=r().m(add, a,b).w(x=>console.log(x));a.s(2);
 
@@ -48,6 +49,18 @@
         e("#text", r().m(add, a, "+", b, "=")),
         e("#text", cc)
       )));
+
+      function test1(){ console.log("test1");
+        return t("test/fragment1.html").then(function(template){ document.body.appendChild(template({example_list:["a","b","c"]}))});
+      }
+
+      test1();
+      test2();
+
+      var wrapped_list = r().m(c,"x","y",["z","zz"]);
+      function test2(){ console.log("test2");
+        return t("test/fragment1.html").then(function(template){ document.body.appendChild(template({example_list:wrapped_list}))});
+      }
 
     </script>
   </body>

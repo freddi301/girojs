@@ -12,14 +12,9 @@ function e(tag, attributes, children) {
   }
   var element = document.createElement(tag);
   for (var i in attributes) { var attribute = attributes[i];
-    if (attribute instanceof Reactive) attribute.w((function(i){ var body;
-      var callback = function ReactiveElement_attribute_watch(delta, old){
-        if (i.slice(0,2)=="on") element.removeEventListener(body = i.slice(2), old), element.addEventListener(body, delta);
-        else element.setAttribute(i, delta)
-      }
-      return callback(attribute.g()), callback;
-    })(i))
-    else element.setAttribute(i, attribute);
+    var callback = setElementAttribute(element, i);
+    if (attribute instanceof Reactive) callback(attribute.g()), attribute.w(callback);
+    else callback(attribute);
   }
   if (children instanceof Node) element.appendChild(children);
   else if (children instanceof Array) for (var c in children) element.appendChild(children[c]);
@@ -28,6 +23,13 @@ function e(tag, attributes, children) {
     if (delta) for (var c in delta) element.appendChild(delta[c]);
   }).s(children.g());
   return element
+};
+
+function setElementAttribute (element, i) { var body;
+  return function ReactiveElement_attribute_watch(delta, old){
+    if (i.slice(0,2)=="on") element.removeEventListener(body = i.slice(2), old), element.addEventListener(body, delta);
+    else element.setAttribute(i, delta)
+  }
 };
 
 window.Giro.element = e;
