@@ -15,6 +15,12 @@
     <script src="bower_components/lodash/lodash.min.js"></script>
     <script src="bower_components/bluebird/js/browser/bluebird.min.js"></script>
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="bower_components/bootstrap/js/bootstrap.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="reactive.js"></script>
+    <script type="text/javascript">
+      function add(){
+        return _.reduce(_.tail(arguments), function(memo, v){return memo+v}, _.head(arguments));
+      };
+    </script>
   </body>
 </html>
