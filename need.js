@@ -34,7 +34,7 @@ var dirName = function(string){return string.replace(fileName, "")};
 function template(url){
   return Promise.join(need(dirName(currentScript.src.toString())+"/template.js"), $.get(url),
   function (template, html){
-    var source = template.node(template.html2dom(html));
+    var source = template.node(template.html2dom(html));console.log(source);
     return new Function("s","\"use strict\"; return "+source);
   }
 )};

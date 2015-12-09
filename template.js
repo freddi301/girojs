@@ -12,6 +12,7 @@ function node(element){
     else if (effective_children.length > 1) children = "r().m(c,"+effective_children.join(", ")+")";
   };
   var body = "e("+[tag].concat(children?[attributes||"null", children]:attributes?[attributes]:[]).join(", ")+")";
+  if (element.hasAttribute("g-let")) body = letElement(element, body);
   if (element.hasAttribute("g-for") && element.hasAttribute("g-in")) return repeatElement(element, body);
   return body;
 };
@@ -35,6 +36,11 @@ function repeatElement(element, body){
   var list = element.getAttribute("g-in"); element.removeAttribute("g-in");
   var vars = element.getAttribute("g-for"); element.removeAttribute("g-for");
   return "r().m(_.map, "+list+", function("+vars+"){return "+body+"})";
+}
+
+function letElement(element, body){
+  var vars = element.getAttribute("g-let"); element.removeAttribute("g-let");
+  return "(function(){var "+vars+"; return "+body+"})()"
 }
 
 var html2dom = function html2dom (fragmentString){

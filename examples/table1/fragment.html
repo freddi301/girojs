@@ -1,6 +1,6 @@
 <div class="col-md-10 col-md-offset-1">
   <div class="panel panel-default table-responsive">
-    <table class="table table-hover">
+    <table class="table table-hover table-condensed">
       <caption>
         <button class="btn btn-primary pull-right" onclick="#var rows=s.table; rows.s(c(rows.g(),r().s({})))">+</button>
       </caption>
@@ -8,11 +8,11 @@
         <tr><th g-for="column" g-in="s.columns">=column</th><th>crypted</th><th></th><th></th></tr>
       </thead>
       <tbody>
-        <tr g-for="row" g-in="s.table">
+        <tr g-for="row" g-in="s.table" g-let="crypted=r().s(row['password'])">
           <td g-for="column" g-in="s.columns">
-            <input value="=row[column]" placeholder="=column" onchange="#row[column]=this.value"/>
+            <input value="=row[column]" placeholder="=column" onchange="#crypted.s(row[column]=this.value)" class="form-control"/>
           </td>
-          <td>=r().m(function(){return btoa(row["password"])}, s.table)</td>
+          <td>=r().m(btoa, crypted)</td>
           <td><button class="close" onclick="#var rows=s.table; rows.s(_.reject(rows.g(), (r)=> r==row));">x</button></td>
           <td><button class="close" onclick="#var rows=s.table; row[prompt('column name')] = ''; rows.s(rows.g())">+</button></td>
         </tr>
