@@ -24,9 +24,31 @@
       };
       Reactive.shortcuts();
 
-      a=r().s(1);b=r().s(2);c=r().m(add, a,b).w(x=>console.log(x));a.s(2);
+      a=r().s(1);b=r().s(2);cc=r().m(add, a,b).w(x=>console.log(x));a.s(2);
 
-      document.body.appendChild(e("#text",c));
+      document.body.appendChild(e("#text",cc));
+
+      document.body.appendChild(e("div", {class:"custom"}));
+
+      document.body.appendChild(e("div", {class:cc}));
+
+      document.body.appendChild(e("div", null, e("#text", cc)));
+
+      document.body.appendChild(e("div", null, [
+        e("#text", r().m(add, a, "+", b, "=")),
+        e("#text", cc)
+      ]));
+
+      document.body.appendChild(e("div", null, r().s([
+        e("#text", r().m(add, a, "+", b, "=")),
+        e("#text", cc)
+      ])));
+
+      document.body.appendChild(e("div", null, r().m(c,
+        e("#text", r().m(add, a, "+", b, "=")),
+        e("#text", cc)
+      )));
+
     </script>
   </body>
 </html>
