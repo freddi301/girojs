@@ -1,12 +1,5 @@
 (function(window){
 
-window.Reactive = window.Reactive || { _shortcuts: {}};
-window.Reactive.Reactive = Reactive;
-window.Reactive.shortcuts = function Reactive_shortcuts(){ var shortcuts = window.Reactive._shortcuts, i;
-  for (i in shortcuts) window[i] = shortcuts[i];
-};
-window.Reactive._shortcuts.r = function(){ var ret = new Reactive(); return ret};
-
 function Reactive(){
   this.value = undefined;
   this.watchers = [];
@@ -48,5 +41,12 @@ Reactive.prototype.c = function Reactive_clear_dependencies () { var watchees = 
   for (i in watchees) (watchee = watchees[i]), watchee.reactive.u(watchee.callback); this.watchees = null;
   return this;
 };
+
+window.Reactive = window.Reactive || { _shortcuts: {}};
+window.Reactive.Reactive = Reactive;
+window.Reactive.shortcuts = function Reactive_shortcuts(){ var shortcuts = window.Reactive._shortcuts, i;
+  for (i in shortcuts) window[i] = shortcuts[i];
+};
+window.Reactive._shortcuts.r = function(){ var ret = new Reactive(); return ret};
 
 })(window)

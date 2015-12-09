@@ -17,12 +17,16 @@
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="reactive.js"></script>
+    <script src="element.js"></script>
     <script type="text/javascript">
       function add(){
         return _.reduce(_.tail(arguments), function(memo, v){return memo+v}, _.head(arguments));
       };
       Reactive.shortcuts();
-      a=r().s(1);b=r().s(2);c=r().m(add, a,b).w(x=>console.log(x));
+
+      a=r().s(1);b=r().s(2);c=r().m(add, a,b).w(x=>console.log(x));a.s(2);
+
+      document.body.appendChild(e("#text",c));
     </script>
   </body>
 </html>
