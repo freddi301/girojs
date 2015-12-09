@@ -21,6 +21,8 @@
       function add(){
         return _.reduce(_.tail(arguments), function(memo, v){return memo+v}, _.head(arguments));
       };
+      Reactive.shortcuts();
+      a=r().s(1);b=r().s(2);c=r().m(add, a,b).w(x=>console.log(x));
     </script>
   </body>
 </html>
