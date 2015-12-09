@@ -25,7 +25,7 @@
       };
       Giro.shortcuts(window);
 
-      a=r().s(1);b=r().s(2);cc=r().m(add, a,b).w(x=>console.log(x));a.s(2);
+      a=r().s(1);b=r().s(2);cc=r().m(add, a,b);a.s(2);
 
       document.body.appendChild(e("#text",cc));
 
@@ -50,17 +50,20 @@
         e("#text", cc)
       )));
 
-      function test1(){ console.log("test1");
+      function test1(){
         return t("test/fragment1.html").then(function(template){ document.body.appendChild(template({example_list:["a","b","c"]}))});
       }
 
       test1();
       test2();
 
-      var wrapped_list = r().m(c,"x","y",["z","zz"]);
-      function test2(){ console.log("test2");
+      var wrapped_list = r().m(c,"x",cc,["z","zz"]);
+      function test2(){
         return t("test/fragment1.html").then(function(template){ document.body.appendChild(template({example_list:wrapped_list}))});
       }
+
+      function test3(){setInterval( function(){a.s(a.g()+1)}, 0)};
+
 
     </script>
   </body>
