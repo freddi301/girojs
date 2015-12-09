@@ -1,6 +1,6 @@
 (function(window){
 
-var Reactive = window.Reactive.Reactive;
+var Reactive = window.Giro.Reactive;
 
 function e(tag, attributes, children) {
   if (tag=="#text"){
@@ -30,7 +30,7 @@ function e(tag, attributes, children) {
   return element
 };
 
-window.Reactive.element = e;
-window.Reactive._shortcuts.e = e;
+window.Giro.element = e;
+window.Giro._shortcuts.e = e;
 
 })(window)

@@ -13,7 +13,7 @@
     "modules"
   ],
   "license": "LGPL3",
-  "homepage": "",
+  "homepage": "https://github.com/freddi301/girojs",
   "ignore": [
     "**/.*",
     "node_modules",

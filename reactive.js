@@ -42,19 +42,19 @@ Reactive.prototype.c = function Reactive_clear_dependencies () { var watchees = 
   return this;
 };
 
-window.Reactive = window.Reactive || { _shortcuts: {}};
-window.Reactive.Reactive = Reactive;
-window.Reactive.shortcuts = function Reactive_shortcuts(){ var shortcuts = window.Reactive._shortcuts, i;
+window.Giro = window.Reactive || { _shortcuts: {}};
+window.Giro.Reactive = Reactive;
+window.Giro.shortcuts = function Reactive_shortcuts(){ var shortcuts = window.Giro._shortcuts, i;
   for (i in shortcuts) window[i] = shortcuts[i];
 };
-window.Reactive._shortcuts.r = function(){ var ret = new Reactive(); return ret};
+window.Giro._shortcuts.r = function(){ var ret = new Reactive(); return ret};
 
-window.Reactive.concat = function Reactive_concat(){
+window.Giro.concat = function Reactive_concat(){
   var ret = arguments[0] instanceof Array ? arguments[0]: [arguments[0]];
   for (var i=1, len=arguments.length; i<len; i++)
     ret = ret.concat(arguments[i]);
   return ret;
 }
-window.Reactive._shortcuts.c = window.Reactive.concat;
+window.Giro._shortcuts.c = window.Giro.concat;
 
 })(window)
