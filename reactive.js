@@ -12,7 +12,7 @@ Reactive.prototype.w = function Reactive_watch(callback) { this.watchers.push(ca
 
 Reactive.prototype.u = function Reactive_unwatch(callback) { var ws = this.watchers; ws.splice(ws.indexOf(callback),1); return this; }
 
-Reactive.prototype.s = function Reactive_set(value, isDependency) { if (!isDependency) this.c();
+Reactive.prototype.s = function Reactive_set(value, isDependency) { //if (!isDependency) this.c();
   var old = this.value, watcher; this.value = value;
   for (var i in this.watchers) (watcher = this.watchers[i]), watcher(value, old);
   return this;
@@ -20,10 +20,7 @@ Reactive.prototype.s = function Reactive_set(value, isDependency) { if (!isDepen
 
 Reactive.prototype.m = function Reactive_method(fun) { this.c();
   var dependencies = [], args = Array.prototype.slice.call(arguments,1), watchees = [], self = this;
-  for (var i in args){ (function (arg, i){
-
-  })(args[i] ,i);
-  var arg = args[i];
+  for (var i in args) (function (arg, i){
     if (arg instanceof Reactive) arg.w((function(i){
         var callback = function Reactive_dependency(delta, old){
           dependencies[i] = delta;
@@ -34,7 +31,7 @@ Reactive.prototype.m = function Reactive_method(fun) { this.c();
         return callback;
     })(i));
     else dependencies[i] = arg;
-  }
+  })(args[i] ,i);
   this.watchees = watchees;
   this.s(fun.apply(null, dependencies), true);
   return this;
