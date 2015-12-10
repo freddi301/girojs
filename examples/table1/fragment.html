@@ -1,14 +1,28 @@
 <div class="col-md-10 col-md-offset-1">
   <div class="panel panel-default table-responsive">
+    <div class="col-md-12">
+      <div class="col-md-1">
+        <input type="number" class="form-control" min="0" step="5" value="=s.pages" onchange="#s.pages.s(this.value)"/>
+      </div>
+      <div class="col-md-10">
+        <ul class="pagination" g-let="tab=function(n){s.page_no.s(s.page_no.g()+n)}" style="margin: 0px">
+          <li><a href="" onclick="#if(s.page_no.g()) tab(-1)" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+          <li g-for="page, index" g-in="s.paginated" class="=r().m(function(page_no){ if(index==page_no) return 'active';return ''}, s.page_no)">
+            <a href="" onclick="#s.page_no.s(index)">=index+1</a>
+          </li>
+          <li><a href="" onclick="#if(s.page_no.g()<s.pageRange.g()-1) tab(1)" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+        </ul>
+      </div>
+      <div class="col-md-1">
+        <button class="btn btn-primary" onclick="#s.table.s(c(s.table.g(),{}))">+</button>
+      </div>
+    </div>
     <table class="table table-hover table-condensed">
-      <caption>
-        <button class="btn btn-primary pull-right" onclick="#var rows=s.table; rows.s(c(rows.g(),r().s({})))">+</button>
-      </caption>
       <thead>
         <tr><th g-for="column" g-in="s.columns">=column</th><th>crypted</th><th></th><th></th></tr>
       </thead>
       <tbody>
-        <tr g-for="row" g-in="s.table" g-let="crypted=r().s(row['password'])">
+        <tr g-for="row" g-in="s.page" g-let="crypted=r().s(row['password'])">
           <td g-for="column" g-in="s.columns">
             <input value="=row[column]" placeholder="=column" onchange="#crypted.s(row[column]=this.value)" class="form-control"/>
           </td>
