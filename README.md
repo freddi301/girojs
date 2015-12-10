@@ -1,7 +1,10 @@
 # Giro.js
 
 Reactive front-end framework
-[examples]()
+[examples](https://cdn.rawgit.com/freddi301/girojs/master/index.html)
+
+install
+    bower install giro
 
 ## Reactive
 
@@ -67,4 +70,4 @@ The template is translated to hyperscript so JavaScript.
 - Everything that begins with **#** is a *JavaScript function body*
 - **g-let** declares variables
 - **g-for** *value, key* **g-in** *list* iterates an element over a list
-- attributes begginning with **on** are EventListeners 
+- attributes begginning with **on** are EventListeners
