@@ -1,7 +1,7 @@
 # Giro.js
 
 Reactive front-end framework
-[examples](https://rawgit.com/freddi301/girojs/examples001/index.html)
+[examples](https://rawgit.com/freddi301/girojs/e1/index.html)
 
 install
     bower install giro
