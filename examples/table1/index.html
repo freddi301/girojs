@@ -28,7 +28,7 @@
       Giro.shortcuts(window);
       t("fragment.html").then(table1);
       function table1(template){
-        $("body").append(template({s:scope})({s:scope}).children[0]);
+        $("body").append(template(scope).children[0]);
       }
       var table = r(); $.get("data.json").then(table.s.bind(table));
       var scope = {
