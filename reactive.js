@@ -51,12 +51,16 @@ Object.defineProperty(Reactive.prototype, "n", { //notify
   get: function Reactive_notify(){this.v=this.v; return this}
 });
 
+function r(){ return new Reactive()};
+r.s = function(){ return Reactive.prototype.s.apply(new Reactive(), arguments)};
+r.m = function(){ return Reactive.prototype.m.apply(new Reactive(), arguments)};
+
 window.Giro = window.Giro || { _shortcuts: {}};
 window.Giro.Reactive = Reactive;
 window.Giro.shortcuts = function Reactive_shortcuts(dict){ var shortcuts = window.Giro._shortcuts, i;
   for (i in shortcuts) dict[i] = shortcuts[i]; return dict;
 };
-window.Giro._shortcuts.r = function(){ var ret = new Reactive(); return ret};
+window.Giro._shortcuts.r = r;
 
 window.Giro.concat = function Reactive_concat(){
   var ret = arguments[0] instanceof Array ? arguments[0]: [arguments[0]];
