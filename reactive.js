@@ -42,6 +42,15 @@ Reactive.prototype.c = function Reactive_clear_dependencies () { var watchees = 
   return this;
 };
 
+Object.defineProperty(Reactive.prototype, "v", {
+  get: Reactive.prototype.g,
+  set: Reactive.prototype.s
+});
+
+Object.defineProperty(Reactive.prototype, "n", { //notify
+  get: function Reactive_notify(){this.v=this.v; return this}
+});
+
 window.Giro = window.Giro || { _shortcuts: {}};
 window.Giro.Reactive = Reactive;
 window.Giro.shortcuts = function Reactive_shortcuts(dict){ var shortcuts = window.Giro._shortcuts, i;
