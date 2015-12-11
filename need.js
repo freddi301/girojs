@@ -35,7 +35,14 @@ function template(url){
   return Promise.join(need(dirName(currentScript.src.toString())+"/template.js"), $.get(url),
   function (template, html){
     var source = template.node(template.html2dom(html));
-    return new Function("s","\"use strict\"; return "+source);
+    return function(controller){
+      var params = _.keys(controller);
+      var args = _.values(controller);
+      var strict_source = "\"use strict\"; return "+ source;
+      var template_function = Function.apply(null, params.concat(strict_source));
+      return template_function.apply(null, args);
+    }
+
   }
 )};
 

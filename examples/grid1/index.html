@@ -26,23 +26,16 @@
     <script src="../../need.js"></script>
     <script type="text/javascript">
       Giro.shortcuts(window);
-      t("fragment.html").then(table1);
-      function table1(template){
-        $("body").append(template({s:scope}).children[0]);
-      }
-      var table = r(); $.get("data.json").then(table.s.bind(table));
-      var scope = {
-        table: table,
-        columns: r().m(getColumns, table),
-        page_no: r().s(0),
-        pages: r().s(3),
-      };
-      scope.paginated = r().m(_.chunk, scope.table, scope.pages);
-      scope.page = r().m(function(pages, page){return pages[page]}, scope.paginated, scope.page_no);
-      scope.pageRange = r().m(function(pages){return pages.length}, scope.paginated);
-      function getColumns(rows){
-        return _.reduce(rows, function(memo, row){return _.union(memo, Object.keys(row))},[])
-      }
+      grid = (function(){ var
+        width = r.s(5),
+        height = r.s(5),
+        widthRange = r.m(_.range, width),
+        heightRange = r.m(_.range, height);
+        return {width, height, widthRange, heightRange};
+      })();
+      t("fragment.html").then(template => $("body").append(template(grid)));
+
     </script>
+
   </body>
 </html>
