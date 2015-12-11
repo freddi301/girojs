@@ -1,3 +1,33 @@
 <div class="container-fluid">
-    
+  <div class="row">
+    <div class="col-md-2">
+      <div class="input-group">
+        <span class="input-group-addon">width</span>
+        <input type="number" class="form-control" placeholder="width" value="=width" onchange="#width.v=this.value">
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="input-group">
+        <span class="input-group-addon">height</span>
+        <input type="number" class="form-control" placeholder="height" value="=height" onchange="#height.v=this.value">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel table-responsive">
+        <table class="table table-bordered table-condensed">
+          <tr>
+            <th>
+               <g-component>templates.dropdown({width, height})</g-component>
+            </th>
+            <th g-for="cell" g-in="widthRange">=cell</th>
+          </tr>
+          <tr g-for="row" g-in="heightRange">
+            <th>=row</th><td g-for="cell" g-in="widthRange"><g-component>templates.text({text:row+":"+cell})</g-componen></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>

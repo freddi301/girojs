@@ -26,16 +26,29 @@
     <script src="../../need.js"></script>
     <script type="text/javascript">
       Giro.shortcuts(window);
-      grid = (function(){ var
+      function doon(data){return function(action){return action(data)}}
+
+      var grid = (function(){ var
         width = r.s(5),
         height = r.s(5),
         widthRange = r.m(_.range, width),
         heightRange = r.m(_.range, height);
-        return {width, height, widthRange, heightRange};
+        return {width, height, widthRange, heightRange, templates:null};
       })();
-      t("fragment.html").then(template => $("body").append(template(grid)));
 
+      templates = {
+        fragment: t("fragment.html").then(doon(grid)),
+        dropdown: t("dropdown").then(doon({width:null, height:null})),
+        text: t("<span><b>=text</b>=text</span>", true).then(doon({text:null}))
+      };
+
+      Promise.props(templates).then(function(templates){
+        grid.templates = templates;
+        $("body").append(doon(grid)(templates.fragment));
+      })
     </script>
-
+    <style media="screen">
+      body {background-color: #E9EAED}
+    </style>
   </body>
 </html>
